@@ -35,13 +35,12 @@ mov [edx+1],al
 inc bl                            ; Increment the inner loop counter
 jmp inner_loop                    ; Jump back to the start of the inner loop
 
-show:
-mov ah,[NUMBERS]                  ; Load the sorted array into ah
-mov ah,[NUMBERS + 1]
-mov ah,[NUMBERS + 2]
-mov ah,[NUMBERS + 3]
-mov ah,[NUMBERS + 4]
-mov ah,[NUMBERS + 5]
+show:                             ; Use syscall to print the values as ascii characters
+mov ebx,1                         ; You will have to use some sort of ASCII to decimal converter to see the results
+mov eax,4
+mov edx,6
+lea ecx,[NUMBERS]
+int 0x80
 
 exit:
 mov eax, 1                        ; syscall number (sys_exit)
