@@ -55,7 +55,7 @@ quick_sort:
     inc dword[j]
     jmp .loop1
     .endloop1:
-    inc dword[i]
+    inc dword[i];;Pivot 
     push esi
     push eax
     mov eax,[j]
@@ -83,6 +83,25 @@ quick_sort:
     pop esi
     pop eax
     pop esi
+    ;;Aici trebuie sa adaugi recursivitatea
+    ;;use pivot
+    pusha
+    dec dword[i]
+    push dword[i]
+    inc dword[i]
+    push ecx
+    push edx
+    call quick_sort
+    add esp,12
+    popa
+    inc eax
+    push eax
+    inc dword[i]
+    push dword[i]
+    dec dword[i]
+    push edx
+    call quick_sort
+    add esp,12
     leave
     ret
 
